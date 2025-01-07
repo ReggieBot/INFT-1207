@@ -1,0 +1,1 @@
+This is the repository for INFT 1207 (Software Testing & Automation)
