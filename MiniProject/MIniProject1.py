@@ -4,7 +4,7 @@ wage = input("Enter hourly wage: $")
 hours = input("Enter hours worked this week: ")
 
 # Process the name - remove extra spaces and convert to title case
-clean_name = name.strip().title()
+clean_name = name.title()
 
 # Convert wage and hours to floating point numbers
 
