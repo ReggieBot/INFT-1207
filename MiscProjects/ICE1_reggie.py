@@ -24,9 +24,10 @@ for movieCount in range(numberOfMovies):
     movies.append((name, budget))
 
 # calculates the average budget of all movies 
+budgetTotal = 0
 for movie in movies:
     budgetTotal = budgetTotal + movie[1]
-averageBudget = budgetTotal / len(movies)
+    averageBudget = budgetTotal / len(movies)
 
 print(f"The average budget of the movies is {averageBudget:,.2f}")
 
@@ -37,6 +38,9 @@ for movie in movies:
     if movie[1] > averageBudget:
         budgetDifference = movie[1] - averageBudget
         # print the movie and exceeded budget to terminal
-        print(f"{movie[0]} cost = ${movie [1]}")
-        print(f"This exceeded the average budget by: ${budgetDifference}")
-        highBudgetMovies + highBudgetMovies + 1
+        print(f"{movie[0]} cost = ${movie [1]:,.2f}")
+        print(f"This exceeded the average budget by: ${budgetDifference:,.2f}")
+        print("\n")
+        highBudgetMovies = highBudgetMovies + 1
+
+print(f"")
