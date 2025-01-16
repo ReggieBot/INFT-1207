@@ -38,9 +38,10 @@ for movie in movies:
     if movie[1] > averageBudget:
         budgetDifference = movie[1] - averageBudget
         # print the movie and exceeded budget to terminal
+        print("\n")
         print(f"{movie[0]} cost = ${movie [1]:,.2f}")
-        print(f"This exceeded the average budget by: ${budgetDifference:,.2f}")
+        print(f"This exceeded the average budget by: ${budgetDifference:,.2f}f")
         print("\n")
         highBudgetMovies = highBudgetMovies + 1
 
-print(f"")
+print(f"The number of movies that exceeded the average budget is: {highBudgetMovies}")
