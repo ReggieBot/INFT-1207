@@ -1,4 +1,5 @@
 # Reggie Brown
+# In class exercise 1
 # Professor Patel
 # 15/01/25
 # reggie.brown@dcmail.ca
@@ -22,4 +23,10 @@ for movieCount in range(numberOfMovies):
     budget = float(input("Enter the budget of the new movie: "))
     movies.append(name, budget)
 
+# calculates the average budget of all movies 
+for movie in movies:
+    budgetTotal = budgetTotal + movie[1]
+averageBudget = budgetTotal / len(movies)
+
+print(f"The average budget of the movies is {averageBudget:,.2f}")
 
