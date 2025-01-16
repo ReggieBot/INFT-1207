@@ -27,8 +27,10 @@ for movieCount in range(numberOfMovies):
 budgetTotal = 0
 for movie in movies:
     budgetTotal = budgetTotal + movie[1]
-    averageBudget = budgetTotal / len(movies)
 
+averageBudget = budgetTotal / len(movies)
+
+print("\n")
 print(f"The average budget of the movies is {averageBudget:,.2f}")
 
 # finds what movies are over average budget
