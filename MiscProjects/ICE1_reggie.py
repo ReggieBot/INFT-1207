@@ -21,7 +21,7 @@ numberOfMovies = int(input("How many movies would you like to add to the list? "
 for movieCount in range(numberOfMovies):
     name = input("Enter name of the new movie ")
     budget = float(input("Enter the budget of the new movie: "))
-    movies.append(name, budget)
+    movies.append((name, budget))
 
 # calculates the average budget of all movies 
 for movie in movies:
@@ -30,3 +30,13 @@ averageBudget = budgetTotal / len(movies)
 
 print(f"The average budget of the movies is {averageBudget:,.2f}")
 
+# finds what movies are over average budget
+
+highBudgetMovies = 0
+for movie in movies:
+    if movie[1] > averageBudget:
+        budgetDifference = movie[1] - averageBudget
+        # print the movie and exceeded budget to terminal
+        print(f"{movie[0]} cost = ${movie [1]}")
+        print(f"This exceeded the average budget by: ${budgetDifference}")
+        highBudgetMovies + highBudgetMovies + 1
