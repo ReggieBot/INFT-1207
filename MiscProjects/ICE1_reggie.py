@@ -13,3 +13,13 @@ movies = [
 ("Avengers: Endgame", 356000000),
 ("Incredibles 2", 200000000)
 ]
+
+numberOfMovies = int(input("How many movies would you like to add to the list? "))
+
+# gets user input for new movies including name/budget, and appends them
+for movieCount in range(numberOfMovies):
+    name = input("Enter name of the new movie ")
+    budget = float(input("Enter the budget of the new movie: "))
+    movies.append(name, budget)
+
+
