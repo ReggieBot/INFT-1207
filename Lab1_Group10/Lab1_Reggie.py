@@ -19,3 +19,18 @@ def generate_password(totalLength, numSpecial, numDigits, numLetters):
     if remainingLength < 0:
         return (f"Error: Letters must be between 0 - {totalLength}")
     
+    if numDigits < 0 or numDigits > remainingLength:
+        return (f"Error: Digits must be between 0 - {remainingLength}")
+    
+    remainingLength = remainingLength - numDigits
+    
+    if numSpecial < 0 or numSpecial > remainingLength:
+        return (f"Error: Special characters must be between 0 - {remainingLength}")
+    
+    # Assigns the possible characters for each type
+    # Uses the String module to get possible characters
+    letters = string.ascii_letters 
+    digits = string.digits
+    specialChars = string.punctuation
+
+    
