@@ -33,4 +33,35 @@ def generate_password(totalLength, numSpecial, numDigits, numLetters):
     digits = string.digits
     specialChars = string.punctuation
 
+    # Generates the password
+    password_characters = (
+        random.choices(letters, k = numLetters) +
+        random.choices(digits, k = numDigits) +
+        random.choices(specialChars, k = numSpecial)
+    )
     
+    # Shuffles the password
+    random.shuffle(password_characters)
+
+    # joins the password characters into a string, and returns it
+    password = ''.join(password_characters)
+    return password
+    
+def main():
+    # header
+    print("Welcome to Reggie's password generator!")
+    print("This program will generate a random password based on YOUR requirements!")
+
+    # try except for input validation
+    try:
+        # user input
+        totalLength = int(input("\nEnter the total length of the password (8-16): "))
+        numLetters = int(input("Enter the number of letters in the password: "))
+        numDigits = int(input("Enter the number of digits in the password: "))
+        numSpecial = int(input("Enter the number of special characters in the password: "))
+
+        # calls the generate_password function
+        password = generate_password(totalLength, numSpecial, numDigits, numLetters)
+
+        # prints the generated password
+        
