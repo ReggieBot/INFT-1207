@@ -62,8 +62,22 @@ def main():
         try:
             # user input
             totalLength = int(input("\nEnter the total length of the password (8-16): "))
+            remaining = totalLength
+
+            print(f"\nYou have {remaining} characters remaining")
+
             numLetters = int(input("Enter the number of letters in the password: "))
+
+            remaining = remaining - numLetters
+            
+            print(f"\nYou have {remaining} characters remaining")
+
             numDigits = int(input("Enter the number of digits in the password: "))
+
+            remaining = remaining - numDigits
+
+            print(f"\nYou have {remaining} characters remaining")
+
             numSpecial = int(input("Enter the number of special characters in the password: "))
 
             # calls the generate_password function
