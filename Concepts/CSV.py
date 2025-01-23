@@ -24,3 +24,25 @@ for iris in irises:
         longest_petal = current_petal_length
 
 print(f"Longest petal: {longest_petal}")
+
+
+def insert_iris():
+    sepal_length = input("Enter sepal length: ")
+    sepal_width = input("Enter sepal width: ")
+    petal_length = input("Enter petal length: ")
+    petal_width = input("Enter petal width: ")
+    species = input("Enter species: ")
+
+    try:
+        sepal_length = float(sepal_length)
+        sepal_width = float(sepal_width)
+        petal_length = float(petal_length)
+        petal_width = float(petal_width)
+        new_iris = "{},{},{},{},{}".format(sepal_length, sepal_width, petal_length, petal_width, species)
+        with open("iris.csv", "a") as iris_file:
+            iris_file.write(new_iris)
+    except:
+        print("Invalid input. Please enter numeric values (float) for lengths and widths.")
+        return
+
+ 
