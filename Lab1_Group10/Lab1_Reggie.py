@@ -53,22 +53,27 @@ def main():
     print("This program will generate a random password based on YOUR requirements!")
 
     # try except for input validation
-    try:
-        # user input
-        totalLength = int(input("\nEnter the total length of the password (8-16): "))
-        numLetters = int(input("Enter the number of letters in the password: "))
-        numDigits = int(input("Enter the number of digits in the password: "))
-        numSpecial = int(input("Enter the number of special characters in the password: "))
+    # added while loop to repromp user
+    while True:
+        try:
+            # user input
+            totalLength = int(input("\nEnter the total length of the password (8-16): "))
+            numLetters = int(input("Enter the number of letters in the password: "))
+            numDigits = int(input("Enter the number of digits in the password: "))
+            numSpecial = int(input("Enter the number of special characters in the password: "))
 
-        # calls the generate_password function
-        password = generate_password(totalLength, numSpecial, numDigits, numLetters)
+            # calls the generate_password function
+            password = generate_password(totalLength, numSpecial, numDigits, numLetters)
 
-        # prints the generated password
-        print(f"\nYour new randomly generated password is: {password}")
+            # prints the generated password
+            print(f"\nYour new randomly generated password is: {password}")
 
-    except ValueError:
-        # error message for invalid input (non-integer)
-        print("\nError: Please enter a valid integer")
+            # breaks if successful password in generated
+            break 
+
+        except ValueError:
+            # error message for invalid input (non-integer)
+            print("\nError: Please enter a valid integer")
 
 # calls the main function
 main()
