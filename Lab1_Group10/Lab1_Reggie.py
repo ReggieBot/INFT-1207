@@ -13,6 +13,10 @@ def generate_password(totalLength, numSpecial, numDigits, numLetters):
     if totalLength < 8 or totalLength > 16:
         return "Password length must be between 8 and 16 characters"
     
+    # Checks that at least one category has characters
+    if numLetters == 0 and numDigits == 0 and numSpecial == 0:
+        return "Error: Password must contain at least one character of a type"
+    
     # Checks remaining available characters after eac;h user input 
     remainingLength = totalLength - numLetters
 
