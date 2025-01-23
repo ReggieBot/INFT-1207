@@ -12,3 +12,15 @@ for row in iris_data[1:]:
         "petal_width": petal_width,
         "species": species
     }
+    irises.append(irises_dict)
+
+# print(irises)
+
+# Find the longest petal
+longest_petal = 0
+for iris in irises:
+    current_petal_length = float(iris["petal_length"])
+    if current_petal_length > longest_petal:
+        longest_petal = current_petal_length
+
+print(f"Longest petal: {longest_petal}")
