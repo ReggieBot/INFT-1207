@@ -64,4 +64,12 @@ def main():
         password = generate_password(totalLength, numSpecial, numDigits, numLetters)
 
         # prints the generated password
-        
+        print(f"\nYour new randomly generated password is: {password}")
+
+    except ValueError:
+        # error message for invalid input (non-integer)
+        print("\nError: Please enter a valid integer")
+
+# calls the main function
+main()
+
