@@ -31,3 +31,9 @@ def find_minimum(numbers):
 
         # returns the smallest number
         return smallest
+
+# Prompts the user to enter a list of numbers 
+print("Enter a list of numbers separated by spaces: ")
+user_input = input()
+
+# 
