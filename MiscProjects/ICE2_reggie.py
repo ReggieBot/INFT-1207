@@ -16,5 +16,10 @@ def is_int(value):
 
 # function to find smallest number in list  
 def find_minimum(numbers):
-
+    # if the list is empty, return None
+    if len(numbers) == 0:
+        print("The list is empty, no valid numbers found")
+        return None
     
+    # Assigns the first element in the list as the smallest 
+    smallest = numbers[0]
