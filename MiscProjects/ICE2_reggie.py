@@ -7,3 +7,11 @@
 
 # Checks if the input can be converted to an int
 
+# Function finds the smallest number in a list
+def find_minimum(numbers):
+    try:
+        # if the list is empty, raise an error
+        if len(numbers) == 0:
+            raise ValueError("Error: Empty list")
+        
+        # set
