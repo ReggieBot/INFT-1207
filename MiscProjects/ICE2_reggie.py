@@ -38,6 +38,25 @@ try:
 
     # checks if the user input is empty
     if user_input.strip() == "":
-        raise valurError("Error: Empty input")
+        raise ValueError("Error: Empty input")
 
-    
+    # split the user input into a list of separate numbers
+    input_values = user_input.split()
+
+    # list to store valid numbers (integers)
+    valid_numbers = []
+
+    # iterate through the list of numbers to check if they are integers
+    for num in numbers:
+        try: 
+            valid_numbers.append(int(num))
+        except ValueError:
+            raise ValueError(f"Error: {num} is not an integer")
+        
+        # Call the find_minimum function to find the smallest number
+        minimum = find_minimum(valid_numbers)
+        if minimum != None:
+            print(f"The smallest number is: {minimum}")
+
+except ValueError:
+    print("Error: Invalid input")
