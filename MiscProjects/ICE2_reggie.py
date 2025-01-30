@@ -23,3 +23,11 @@ def find_minimum(numbers):
     
     # Assigns the first element in the list as the smallest 
     smallest = numbers[0]
+
+    # Loops through the list to find the smallest number
+    for number in numbers:
+        if number < smallest:
+            smallest = number
+
+        # returns the smallest number
+        return smallest
