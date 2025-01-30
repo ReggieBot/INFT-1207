@@ -36,4 +36,8 @@ try:
     print("Enter numbers separated by spaces: ")
     user_input = input()
 
+    # checks if the user input is empty
+    if user_input.strip() == "":
+        raise valurError("Error: Empty input")
+
     
