@@ -55,9 +55,9 @@ try:
             raise ValueError(f"Error: {num} is not an integer")
         
         # Call the find_minimum function to find the smallest number
-        minimum = find_minimum(valid_numbers)
-        if minimum != None:
-            print(f"The smallest number is: {minimum}")
+    minimum = find_minimum(valid_numbers)
+    if minimum != None:
+        print(f"The smallest number is: {minimum}")
 
 except ValueError:
     print("Error: Invalid input")
