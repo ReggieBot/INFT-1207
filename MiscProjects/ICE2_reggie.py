@@ -25,7 +25,15 @@ def find_minimum(numbers):
         # returns the smallest number 
         return smallest
     
+    # if the list is empty, print an error message
     except ValueError:
         print("Error: Empty list")
         return None
+    
+# main program
+try:
+    # get the list of numbers from the user
+    print("Enter numbers separated by spaces: ")
+    user_input = input()
+
     
