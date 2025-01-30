@@ -4,6 +4,7 @@
 # Prof. Patel
 # Desc: This program will read a set of 
 # elements from the user and then prints the smallest
+# Github: https://github.com/ReggieBot/INFT-1207/tree/main/MiscProjects
 
 # Checks if the input can be converted to an int
 
@@ -47,7 +48,7 @@ try:
     valid_numbers = []
 
     # iterate through the list of numbers to check if they are integers
-    for num in numbers:
+    for num in input_values:
         try: 
             valid_numbers.append(int(num))
         except ValueError:
