@@ -15,3 +15,6 @@ class TestAddition(unittest.TestCase):
     def test_add_method_raises_typeerror(self):
         calc = Addition()
         self.assertRaises(TypeError, calc.add, "Hello", "World")
+
+if __name__ == '__main__':
+    unittest.main()

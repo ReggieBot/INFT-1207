@@ -1,6 +1,9 @@
 class Addition(object):
     def add(self, x,y):
-        return x + y
+        if type(x) == int and type(y) == int:
+            return x + y
+        else:
+            raise TypeError("Invalid Type: {} and {}".format(type(x), type(y)))
 
 if __name__ == '__main__':
     calc = Addition()
