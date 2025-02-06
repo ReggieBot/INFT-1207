@@ -10,3 +10,8 @@ class TestAddition(unittest.TestCase):
     def test_add_method_returns_correct_result(self):
         calc = Addition()
         self.assertEqual(calc.add(2,2), 4)
+        self.assertEqual(5, calc.add(2,3))
+
+    def test_add_method_raises_typeerror(self):
+        calc = Addition()
+        self.assertRaises(TypeError, calc.add, "Hello", "World")
