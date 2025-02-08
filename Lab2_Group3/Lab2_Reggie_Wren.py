@@ -22,7 +22,7 @@ def search_books():
     # method to search for book from title
     searching_title = input("\nPlease enter the title of the book you'd like to search for: ")
     # remove whitespace
-    searching_title.strip()
+    searching_title = searching_title.strip()
 
     try:
         file = open("books.csv", "r")
@@ -53,7 +53,7 @@ def main():
 
     # Infinite while loop to keep the program menu running. Exit clause is triggered when user chooses to exit program
     while True:
-        print("-- Welcome To Your Personal Reading List --")
+        print("[[[ Welcome To Your Personal Reading List ]]]")
         print("1. Add book")
         print("2. List all of your books")
         print("3. Search for book")
