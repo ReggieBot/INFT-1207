@@ -8,12 +8,12 @@
 import csv
 
 
-def add_book():
+#def add_book():
 
 # function to add book to the csv
 
 
-def list_books():
+#def list_books():
 
 # function to get all books from csv and display to user
 
@@ -33,6 +33,7 @@ def search_books():
         book_found = False
         for row in reader:
             if row and row[0].strip().lower() == searching_title.lower():
+                print("-- Book Details --")
                 print("Title: ", row[0])
                 print("Author: ", row[1])
                 print("Year: ", row[2])
@@ -42,10 +43,10 @@ def search_books():
         file.close()
 
         if book_found == False:
-            print ("Could  not find that book")
+            print ("\nCould  not find that book")
 
     except FileNotFoundError:
-        print("No books added!")
+        print("\nNo books added!")
 
 
 def main():
