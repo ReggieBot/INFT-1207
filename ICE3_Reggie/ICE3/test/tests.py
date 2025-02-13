@@ -22,7 +22,7 @@ class TestMinimum(unittest.TestCase):
         self.assertEqual(find_minimum([90]), 90)
 
     def test_1B(self):
-        self.assertEqual(find_minimum([12, 10]))
+        self.assertEqual(find_minimum([12, 10]), 10)
 
 
 
