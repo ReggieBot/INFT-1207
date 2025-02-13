@@ -11,17 +11,10 @@ import unittest
 import sys
 import os
 
-# DISCLAIMER: THIS WILL NOT RUN
-# I tried absolutely everything to try and get the path right, but couldn't figure it out
-# Adding random code below from stackoverflow also did not fix the problem.
-# The test cases should be correct though (to my knowledge)
 
-# PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-# if PROJECT_ROOT not in sys.path:
-#     sys.path.insert(0, PROJECT_ROOT)
-
-from ICE3.app.minimum_finder import find_minimum
+from app.minimum_finder import find_minimum
 
 class TestMinimum(unittest.TestCase):
 
