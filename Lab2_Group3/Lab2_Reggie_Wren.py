@@ -7,15 +7,33 @@
 
 import csv
 
+fields = ['Title', 'Auther', 'Year']
 
-#def add_book():
+filename = "Books.csv"
+
+def add_book():
 
 # function to add book to the csv
 
+    with open(filename, 'a') as csvfile:
+        myfile = csv.writer(csvfile)
+        myfile.writerow(["Title", "Auther", "Year"])
+        Answer = int(input("how many books would you like to input? "))
+        for i in range(Answer):
+            Title = input("Input the title of the book: ")
+            Auther = input("Input the auther of the book: ")
+            Year = input("Input the year of the books publication: ")
+            myfile.writerow([Title, Auther, Year])
 
-#def list_books():
+def list_books():
 
 # function to get all books from csv and display to user
+
+    with open(filename, 'r') as csvfile:
+        csv_readers = csv.DictReader(filename)
+        for row in csv_readers:
+            print(row)
+
 
 def search_books():
 
