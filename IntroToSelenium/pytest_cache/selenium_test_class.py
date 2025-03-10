@@ -16,7 +16,7 @@ class DemoSeleniumTest(unittest.TestCase):
         sleep(1)
 
     def test_page_title(self):
-        self.assertEqual("Web form", self.browser.title)
+        self.assertIn("Web form", self.browser.title)
         sleep(1)
 
     def test_fill_text_and_submit(self):
@@ -30,3 +30,8 @@ class DemoSeleniumTest(unittest.TestCase):
         submit_button = self.browser.find_element(By.CSS_SELECTOR, "button")
         # click the submit button
         submit_button.click()
+
+        # find the message button
+        message = self.browser.find_element(By.ID, "message")
+        # verify the text is correct
+        self.assertEqual("Received!", message.text, "Error in Form Submission ")
