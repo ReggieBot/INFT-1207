@@ -30,8 +30,24 @@ class DemoSeleniumTest(unittest.TestCase):
         submit_button = self.browser.find_element(By.CSS_SELECTOR, "button")
         # click the submit button
         submit_button.click()
+        sleep(1)
 
         # find the message button
         message = self.browser.find_element(By.ID, "message")
         # verify the text is correct
-        self.assertEqual("Received!", message.text, "Error in Form Submission ")
+        self.assertEqual("Received!", message.text, "Error in Form Submission")
+        sleep(1)
+
+    def test_scroll_and_click(self):
+        self.browser.get("https://www.selenium.dev/")
+        sleep(1)
+
+        # scroll to the bottom
+        # 1. Find the footer
+        # 2. Scroll the page till the footer is in view
+
+        footer = self.browser.find_element(By.CSS_SELECTOR, "footer")
+
+        # use the execute script method
+        self.browser.execute_script("arguments[0].scrollIntoView(true);", footer)
+        sleep(1)
