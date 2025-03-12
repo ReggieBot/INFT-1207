@@ -51,3 +51,10 @@ class DemoSeleniumTest(unittest.TestCase):
         # use the execute script method
         self.browser.execute_script("arguments[0].scrollIntoView(true);", footer)
         sleep(1)
+
+        # click the "Open Collective" link
+        open_collective_link = self.browser.find_element(By.LINK_TEXT, "Open Collective")
+        open_collective_link.click()
+        sleep(1)
+        self.browser.switch_to(self.browser.window_handles[-1])
+        self.assertIn("Selenium - Open Collective", self.browser.title)
