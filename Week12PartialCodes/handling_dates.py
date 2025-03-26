@@ -6,14 +6,14 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
-from webdriver_manager.chrome import ChromeDriverManager
+# from webdriver_manager.chrome import ChromeDriverManager
 
 
 class DatePickingDemo(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.driver = webdriver.Chrome(ChromeDriverManager().install())
+        cls.driver = webdriver.Firefox()
         cls.driver.maximize_window()
         sleep(2)
 
