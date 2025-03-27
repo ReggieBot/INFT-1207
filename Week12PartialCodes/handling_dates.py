@@ -26,20 +26,26 @@ class DatePickingDemo(unittest.TestCase):
         sleep(5)
 
         # switch to frame- DIFFERENT WAY
-
+        i_frame = driver.find_element(By.CLASS_NAME, "demo-frame")
+        driver.switch_to.frame(i_frame)
 
         # identify element inside frame
-
+        date_picker = driver.find_element(By.ID, "datepicker").click()
+        date_picker.click()
 
         # identify list of all dates
 
-
-        # iterate over list
+        all_dates = driver.find_elements(By.XPATH, "//table/tbody/tr/td")
 
         # verify required date then click
-
+        for date in all_dates:
+            if date.text == "6":
+                date.click()
+                break
 
         # get selected date
+        selected_date = date_picker.get_attribute('value')
+        print(f"selected date is {selected_date}")
 
 
         sleep(5)
