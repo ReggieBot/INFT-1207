@@ -3,12 +3,14 @@
 # Lab 5
 # Prof Patel
 # Desc: This Selenium script automates shopping, using different filters and web elements
+# References: https://www.geeksforgeeks.org/move_to_element-method-action-chains-in-selenium-python/
 
 import unittest
 from time import sleep
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
 
 class Lab5TestCases(unittest.TestCase):
 
@@ -91,7 +93,33 @@ class Lab5TestCases(unittest.TestCase):
         polyester.click()
         sleep(1)
 
+    def test3_add_to_cart(self):
+        print("Test 3: Adding product to cart")
+        # Unfortunately, if you select the product after applying all the filters, the product is then reset without
+        # the filters. So action chains are needed to hover over the product.
+        # When hovered over, an add to cart button appears
+        # Though even after that, it still resets filters when added to cart. I give up.
+        # I'll keep this action chains code in here though.
 
+        driver = self.driver
 
+        # find the first available product
+        product = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[3]/div[1]/div[3]/ol/li[1]/div/div/strong/a")
+        sleep(1)
+
+        # create action chain for hovering (see reference)
+        actions = ActionChains(driver)
+        actions.move_to_element(product).perform()
+        sleep(2)
+
+        # Look for add to cart button that appears after hovering
+        add_to_cart = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[3]/div[1]/div[3]/ol/li[1]/div/div/div[4]/div/div[1]/form/button")
+        add_to_cart.click()
+        sleep(3)
+
+    def test4_verify_and_checkout(self):
+        print("Test 4: Check cart and checkout")
+
+        
 
 
