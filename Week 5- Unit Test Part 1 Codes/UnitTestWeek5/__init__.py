@@ -4,8 +4,8 @@ __author__ = 'Dr.Sukhwant Sagar'
 
 # Steps
 # 1. First create a python package called UnitTestWeek5(or you can select your own name too)
-# 2. By default a __init__.py file is created. The __init__.py file lets the Python interpreter know that
-# a directory contains code for a Python module. An __init__.py file can be blank. Without one, you cannot
+# 2. By default a Lab5_reggie.py file is created. The Lab5_reggie.py file lets the Python interpreter know that
+# a directory contains code for a Python module. An Lab5_reggie.py file can be blank. Without one, you cannot
 # import modules from another folder into your project. The file essentially the constructor of your package
 # or directory without it being called such. It sets up how packages or functions will be imported into
 # your other files.
