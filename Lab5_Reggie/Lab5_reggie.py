@@ -12,6 +12,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 
+
 class Lab5TestCases(unittest.TestCase):
 
     @classmethod
@@ -120,6 +121,29 @@ class Lab5TestCases(unittest.TestCase):
     def test4_verify_and_checkout(self):
         print("Test 4: Check cart and checkout")
 
-        
+        driver = self.driver
+
+        # click on cart icon
+        cart_icon = driver.find_element(By.XPATH, "/html/body/div[2]/header/div[2]/div[1]/a")
+        cart_icon.click()
+        sleep(2)
+
+        # click on proceed to checkout
+        checkout_button = driver.find_element(By.XPATH, "html/body/div[2]/header/div[2]/div[1]/div/div/div/div[2]/div[3]/div/button")
+        checkout_button.click()
+        sleep(2)
+
+        # Assert the order summary
+        order_summary = driver.find_element(By.CLASS_NAME, "opc-block-summary")
+        self.assertTrue(order_summary.is_displayed(), "Order summary is not displayed")
+        sleep(2)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.driver.quit()
+
+
+if __name__ == "__main__":
+    unittest.main()
 
 
