@@ -27,11 +27,14 @@ class Lab5TestCases(unittest.TestCase):
         sleep(2)
 
         # click on women menu
-        driver.find_element(By.ID, "ui-id-4").click()
+        women_menu = driver.find_element(By.ID, "ui-id-4")
+        women_menu.click()
         sleep(2)
 
         # navigate to hoodies and sweatshirts
-        driver.find_element(By.XPATH, "/html/body/div[2]/main/div[4]/div[2]/div[2]/div/ul[1]/li[1]/a").click()
+        hoodie_sweatshirt = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[4]/div[2]/div[2]/div/ul[1]/li[1]/a")
+        hoodie_sweatshirt.click()
+        sleep(2)
 
     def test2_filters(self):
         print("Test 2: Applying filters")
@@ -39,6 +42,54 @@ class Lab5TestCases(unittest.TestCase):
         driver = self.driver
 
         # expand style section
+        expand_style = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[3]/div[2]/div/div[2]/div/div[1]/div[1]")
+        expand_style.click()
+        sleep(1)
+
+        # click on pullover style
+        select_pullover = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[3]/div[2]/div/div[2]/div/div[1]/div[2]/ol/li[3]/a")
+        select_pullover.click()
+        sleep(2)
+
+        # expand size filter
+        expand_size = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[3]/div[2]/div/div[2]/div[3]/div[1]/div[1]")
+        expand_size.click()
+        sleep(1)
+
+        # select size medium
+        size_medium = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[3]/div[2]/div/div[2]/div[3]/div[1]/div[2]/div/div/a[3]/div")
+        size_medium.click()
+        sleep(1)
+
+        # Expand price range filter
+        price_filter = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[3]/div[2]/div/div[2]/div[3]/div[9]/div[1]")
+        price_filter.click()
+        sleep(1)
+
+        # Select price range
+        price_range = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[3]/div[2]/div/div[2]/div[3]/div[9]/div[2]/ol/li[3]/a/span[1]")
+        price_range.click()
+        sleep(1)
+
+        # Expand colour filter
+        expand_colour = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[3]/div[2]/div/div[2]/div[3]/div[2]/div[1]")
+        expand_colour.click()
+        sleep(1)
+
+        # select purple colour
+        colour_purple = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[3]/div[2]/div/div[2]/div[3]/div[2]/div[2]/div/div/a[4]/div")
+        colour_purple.click()
+        sleep(1)
+
+        # Expand material filter
+        expand_material = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[3]/div[2]/div/div[2]/div[3]/div[4]/div[1]")
+        expand_material.click()
+        sleep(1)
+
+        # select polyester material
+        polyester = driver.find_element(By.XPATH, "/html/body/div[2]/main/div[3]/div[2]/div/div[2]/div[3]/div[4]/div[2]/ol/li[3]/a")
+        polyester.click()
+        sleep(1)
 
 
 
