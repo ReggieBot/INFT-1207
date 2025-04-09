@@ -10,6 +10,7 @@
 # https://www.selenium.dev/documentation/webdriver/elements/interactions/      .clear()
 # https://stackoverflow.com/questions/38022658/selenium-python-handling-no-such-element-exception noSuchElementException
 # https://www.browserstack.com/guide/alerts-and-popups-in-selenium
+https://www.browserstack.com/guide/noalertpresentexception-in-selenium
 
 # This test file assumes that a customer accont has already been created.
 # Account created by me - Customer ID = 43593
@@ -60,94 +61,7 @@ class TestEditCustomer(unittest.TestCase):
         self.browser.find_element(By.NAME, "AccSubmit").click()
         sleep(1)
 
-
-
-    def test1_edit_valid(self):
-        print("Test1: Editing customer with valid data")
-
-        self.go_edit_customer()
-        self.submit_cust_id("43593")
-        
-        # update editable fields (name, gender, DOB - not editable)
-        
-        # address
-        self.browser.find_element(By.NAME, "addr").clear()
-        self.browser.find_element(By.NAME, "addr").send_keys("36 Hockley Avenue")
- 
-        # city
-        self.browser.find_element(By.NAME, "city").clear()
-        self.browser.find_element(By.NAME, "city").send_keys("Oshawa")
-
-        # state (province)
-        self.browser.find_element(By.NAME, "state").clear()
-        self.browser.find_element(By.NAME, "state").send_keys("Alberta")
-
-        # pin
-        self.browser.find_element(By.NAME, "pinno").clear()
-        self.browser.find_element(By.NAME, "pinno").send_keys("696969")
-
-        # phone #
-        self.browser.find_element(By.NAME, "telephoneno").clear()
-        self.browser.find_element(By.NAME, "telephoneno").send_keys("911")
-
-        # email
-        self.browser.find_element(By.NAME, "emailid").clear()
-        self.browser.find_element(By.NAME, "emailid").send_keys("testemail@gmail.com")
-        sleep(.5)
-
-        # sumbit changes
-        self.browser.find_element(By.NAME, "sub").click()
-        sleep(1)
-
-
-        # check for success message
-        try: 
-            success_msg = self.browser.find_element(By.XPATH, "//p[contains(text(),'Edit Successfull')]")
-            self.assertTrue(success_msg.is_displayed())
-            print("Test1 passed: Valid edit successful.")
-
-        except NoSuchElementException:
-            print("No success message found")
-
-            # check if data was still updated
-            # checks if address = new address
-            self.browser.get("http://demo.guru99.com/V4/")
-            sleep(.5)
-            self.browser.find_element(By.NAME, "uid").send_keys("mngr619261")
-            self.browser.find_element(By.NAME, "password").send_keys("anugagy")
-            self.browser.find_element(By.NAME, "btnLogin").click()
-            self.go_edit_customer()
-            self.submit_cust_id("43593")
-            sleep(1)
-
-            # checks if address = new address
-            current_address = self.browser.find_element(By.NAME, "addr").get_attribute("value")
-
-            if current_address == "36 Hockley Avenue":
-                print("Data updated successfully. Success message not displayed. Test 1 failed.")
-            else:
-                print("No success message AND data not updated. Test 1 failed.")
-
-
-    def test2_customer_id_nonexist(self):
-        print("Test2: Attempt to edit a non existent ID.")
-        self.go_edit_customer()
-
-        # Enter a random invalid ID
-        self.submit_cust_id("123456")
-
-        # Expect alert
-        # Switch to alert, then accept
-        # assert that alert text contains expected message
-        try:
-            alert = self.browser.switch_to.alert
-            alert_text = alert.text
-            alert.accept()
-            self.assertIn("Customer does not exist!!", alert_text)
-            print("Test2 passed: Alert displayed for non-existent ID.")
-        except:
-            self.fail("Non existent ID does not trigger alert. Test 2 failed.")
-    
+    def capture_alert
 if __name__ == '__main__':
     unittest.main()
     
