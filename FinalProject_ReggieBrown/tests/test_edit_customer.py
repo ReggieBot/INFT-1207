@@ -6,6 +6,9 @@
 # functionality of the guru99 bank application. Test cases were written with unittest & selenium
 # Github: https://github.com/ReggieBot/INFT-1207/tree/main/FinalProject_ReggieBrown
 
+# REFERENCES: 
+# https://www.selenium.dev/documentation/webdriver/elements/interactions/      .clear()
+
 # This test file assumes that a customer accont has already been created.
 # Account created by me - Customer ID = 43593
 
@@ -60,6 +63,11 @@ class TestEditCustomer(unittest.TestCase):
         print("Editing customer with valid data")
 
         self.go_edit_customer()
+        self.submit_cust_id("43593")
+        
+        # Update editable fields (name, gender, DOB - not editable)
+        # 
+        self.browser.find_element(By.NAME)
 
 
 if __name__ == '__main__':
