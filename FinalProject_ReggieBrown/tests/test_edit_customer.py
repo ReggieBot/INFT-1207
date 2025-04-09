@@ -9,6 +9,7 @@
 # REFERENCES: 
 # https://www.selenium.dev/documentation/webdriver/elements/interactions/      .clear()
 # https://stackoverflow.com/questions/38022658/selenium-python-handling-no-such-element-exception noSuchElementException
+# https://www.browserstack.com/guide/alerts-and-popups-in-selenium
 
 # This test file assumes that a customer accont has already been created.
 # Account created by me - Customer ID = 43593
@@ -62,7 +63,7 @@ class TestEditCustomer(unittest.TestCase):
 
 
     def test1_edit_valid(self):
-        print("Editing customer with valid data")
+        print("Test1: Editing customer with valid data")
 
         self.go_edit_customer()
         self.submit_cust_id("43593")
@@ -109,6 +110,7 @@ class TestEditCustomer(unittest.TestCase):
             print("No success message found")
 
             # check if data was still updated
+            # checks if address = new address
             self.browser.get("http://demo.guru99.com/V4/")
             sleep(.5)
             self.browser.find_element(By.NAME, "uid").send_keys("mngr619261")
@@ -118,6 +120,7 @@ class TestEditCustomer(unittest.TestCase):
             self.submit_cust_id("43593")
             sleep(1)
 
+            # checks if address = new address
             current_address = self.browser.find_element(By.NAME, "addr").get_attribute("value")
 
             if current_address == "36 Hockley Avenue":
@@ -125,6 +128,25 @@ class TestEditCustomer(unittest.TestCase):
             else:
                 print("No success message AND data not updated. Test 1 failed.")
 
-        
+
+    def test2_customer_id_nonexist(self):
+        print("Test2: Attempt to edit a non existent ID.")
+        self.go_edit_customer()
+
+        # Enter a random invalid ID
+        self.submit_cust_id("123456")
+
+        # Expect alert
+        # Switch to alert, then accept
+        # assert that alert text contains expected message
+        try:
+            alert = self.browser.switch_to.alert
+            alert_text = alert.text
+            alert.accept()
+            self.assertIn("Customer does not exist!!", alert_text)
+            print("Test2 passed: Alert displayed for non-existent ID.")
+        except:
+            self.fail("Non existent ID does not trigger alert. Test 2 failed.")
+    
 if __name__ == '__main__':
     unittest.main()
