@@ -20,6 +20,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoAlertPresentException
 
 class TestEditCustomer(unittest.TestCase):
@@ -75,6 +76,7 @@ class TestEditCustomer(unittest.TestCase):
     # Test 1: Customer ID empty
     def test1_emptyID(self):
         print("Test1: Verify ID cannot be empty")
+
         self.go_edit_customer()
         self.submit_cust_id("")
         
@@ -105,6 +107,7 @@ class TestEditCustomer(unittest.TestCase):
     # Test 3: Inserting special characters in Customer ID field
     def test3_specialChar(self):
         print("Test 3: Verify ID cannot contain special characters")
+
         self.go_edit_customer()
         self.browser.find_element(By.NAME, "cusid").send_keys("@*$&%$@*")
         sleep(1)
@@ -119,6 +122,63 @@ class TestEditCustomer(unittest.TestCase):
         alert = self.capture_alert()
         self.assertIsNotNone(alert, "Expected alert")
         print("Test 2 passed")
+
+    def test4_validID(self):
+        print("Test 4: Verify that a valid ID is accepted")
+
+        self.go_edit_customer()
+        self.submit_cust_id("43593")
+        sleep(1)
+
+        # Check to see if name field is displayed
+        # if not, then ID is invalid
+
+        name_field = self.browser.find_element(By.NAME, "name")
+        self.assertTrue(name_field.is_displayed())
+        print("Name field displayed")
+
+        print("Test 4 passed")
+
+    def test4_empty_address(self):
+        print("Test 5: Verify address field cannot be empty")
+        self.go_edit_customer()
+        self.submit_cust_id("43593")
+        sleep(1)
+
+        # clear address field
+        address_field = self.browser.find_element(By.NAME, "addr")
+        address_field.clear()
+        sleep(.5)
+
+        # press tab to trigger warning message
+        address_field.send_keys(Keys.TAB)
+        sleep(1)
+
+        # check if warning message is displayed
+        cant_contain = self.browser.find_element(By.CSS_SELECTOR, "label#message3")
+
+        self.assertTrue(cant_contain.is_displayed())
+        print("Warning displayed")
+
+        # Check if address field is empty (saved empty address to DB)
+        self.browser.find_element(By.NAME, "sub").click()
+        sleep(1)
+
+        self.browser.get("https://demo.guru99.com/V4/")
+        self.browser.find_element(By.NAME, "uid").send_keys("mngr619261")
+        self.browser.find_element(By.NAME, "password").send_keys("anugagy")
+        self.browser.find_element(By.NAME, "btnLogin").click()
+        sleep(1)
+
+        self.go_edit_customer()
+        self.submit_cust_id("43593")
+        sleep(1)
+        address_field = self.browser.find_element(By.NAME, "addr")
+        address_field_value = address_field.get_attribute("value")
+        self.assertEqual(address_field_value, "", "BUG Address field is empty. Invalid address was saved to DB")
+
+        print("Test 5 BUG FOUND: Warning message displayed, but empty address was still saved")
+
 
         
 if __name__ == '__main__':
