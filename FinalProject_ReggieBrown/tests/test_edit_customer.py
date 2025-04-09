@@ -38,6 +38,20 @@ class TestEditCustomer(unittest.TestCase):
             sleep(2)
             cls.browser.quit()
 
+        # various methods for use in test cases
+
+        # cick on 'edit customer' link
+        def go_edit_customer(self):
+            self.browser.find_element(By.LINK_TEXT, "Edit Customer").click()
+            sleep(1)
+
+
+
+    def test1_edit_valid(self):
+        print("Editing customer with valid data")
+
+        self.
+
 
 if __name__ == '__main__':
     unittest.main()
