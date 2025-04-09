@@ -6,6 +6,9 @@
 # functionality of the guru99 bank application. Test cases were written with unittest & selenium
 # Github: https://github.com/ReggieBot/INFT-1207/tree/main/FinalProject_ReggieBrown
 
+# This test file assumes that a customer accont has already been created.
+# Account created by me - Customer ID = 43593
+
 import unittest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -45,12 +48,18 @@ class TestEditCustomer(unittest.TestCase):
             self.browser.find_element(By.LINK_TEXT, "Edit Customer").click()
             sleep(1)
 
+        # enter customer id + submit
+        def submit_cust_id(self, customer_id):
+            self.browser.find_element(By.NAME, "cusid").send_keys(customer_id)
+            self.browser.find_element(By.NAME, "AccSubmit").click()
+            sleep(1)
+
 
 
     def test1_edit_valid(self):
         print("Editing customer with valid data")
 
-        self.
+        self.go_edit_customer()
 
 
 if __name__ == '__main__':
