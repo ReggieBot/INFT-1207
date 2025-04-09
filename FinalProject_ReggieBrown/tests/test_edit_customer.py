@@ -10,7 +10,7 @@
 # https://www.selenium.dev/documentation/webdriver/elements/interactions/      .clear()
 # https://stackoverflow.com/questions/38022658/selenium-python-handling-no-such-element-exception noSuchElementException
 # https://www.browserstack.com/guide/alerts-and-popups-in-selenium
-https://www.browserstack.com/guide/noalertpresentexception-in-selenium
+# https://www.browserstack.com/guide/noalertpresentexception-in-selenium
 
 # This test file assumes that a customer accont has already been created.
 # Account created by me - Customer ID = 43593
@@ -20,6 +20,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoAlertPresentException
 
 class TestEditCustomer(unittest.TestCase):
 
@@ -61,7 +62,65 @@ class TestEditCustomer(unittest.TestCase):
         self.browser.find_element(By.NAME, "AccSubmit").click()
         sleep(1)
 
-    def capture_alert
+    # captures alert message and accepts it. Returns alert text (if present)
+    def capture_alert(self):
+        try:
+            alert = self.browser.switch_to.alert
+            alert_text = alert.text
+            alert.accept()
+            return alert_text
+        except NoAlertPresentException:
+            return None
+
+    # Test 1: Customer ID empty
+    def test1_emptyID(self):
+        print("Test1: Verify ID cannot be empty")
+        self.go_edit_customer()
+        self.submit_cust_id("")
+        
+        self.browser.find_element(By.NAME, "AccSubmit").click()
+        sleep(1)
+        message = self.capture_alert()
+        self.assertEqual(message, "Please fill all fields")
+        print("Test 1 passed")
+
+    # Test 2: ID must be numeric
+    def test2_numericID(self):
+        print("Test 2: Verify ID cannot contain letters")
+        
+        self.go_edit_customer()
+        self.browser.find_element(By.NAME, "cusid").send_keys("abc")
+        sleep(1)
+        cant_contain = self.browser.find_element(By.CSS_SELECTOR, "label#message14")
+        self.assertTrue(cant_contain.is_displayed())
+        print("Warning displayed")
+
+        # Check if alert is present
+        self.browser.find_element(By.NAME, "AccSubmit").click()
+        sleep(1)
+        alert = self.capture_alert()
+        self.assertIsNotNone(alert, "Exepcted Alert")
+        print("Test 2 passed")
+
+    # Test 3: Inserting special characters in Customer ID field
+    def test3_specialChar(self):
+        print("Test 3: Verify ID cannot contain special characters")
+        self.go_edit_customer()
+        self.browser.find_element(By.NAME, "cusid").send_keys("@*$&%$@*")
+        sleep(1)
+        cant_contain = self.browser.find_element(By.CSS_SELECTOR, "label#message14")
+
+        self.assertTrue(cant_contain.is_displayed())
+        print("Warning displayed")
+        
+        # Check if alert is present
+        self.browser.find_element(By.NAME, "AccSubmit").click()
+        sleep(1)
+        alert = self.capture_alert()
+        self.assertIsNotNone(alert, "Expected alert")
+        print("Test 2 passed")
+
+        
 if __name__ == '__main__':
     unittest.main()
     
